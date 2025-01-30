@@ -54,6 +54,25 @@ require_once("util/Conexao.php");
             return $clientes;
         }
 
+        public function buscarPorId(int $idCliente){
+            $con = Conexao::getCon();
+
+            $sql = "SELECT * FROM clientes WHERE id = ?";
+
+            $stm = $con->prepare($sql);
+            $stm->execute([$idCliente]);
+
+            $registros = $stm->fetchAll();
+
+            $clientes = $this->mapCliente($registros);
+            if(count($clientes) > 0)
+                return $clientes[0];
+            else
+                return null;
+        
+
+        }
+
         private function mapCliente(array $registros){
             $clientes = array();
             foreach($registros as $reg){

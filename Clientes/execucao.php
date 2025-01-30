@@ -53,20 +53,44 @@ do {
             $clientes = $clienteDAO->listarClientes();
 
             foreach($clientes as $c){
-                
+                /*
                 printf("%d- %s | %s | %s | %s | %s\n",
                     $c->getId(), $c->getTipo(),$c->getNomeSocial(),
                     $c->getIdentificacao(), $c->getNroDoc(),
                     $c->getEmail());
+
+
+                    */
             }
 
 
             break;
         case 4:
+            //Buscar um cliente pelo seu ID
+
+            //1- Ler o ID
+            $id = readline("Informe o ID do cliente: ");
+
+            //2- Chamar o metodo que retorna o objeto cliente do banco de dados
+            $clienteDAO = new ClienteDAO();
+            $cliente = $clienteDAO->buscarPorId($id);
+
+            if($cliente != null)
+                echo $cliente;
+            else
+                echo "Cliente não encontrado\n";
            
             break;
         case 5:
-           
+            //EXCLUSAO PELO ID DO CLIENTE
+
+            //1-Listar os clientes
+
+            //2-Solicitar o ID
+
+            //3-Chamar o cliente DAO para remover a base de dados
+
+            //4-Informar q o cliente foi excluído
             break;
         case 0:
             echo"Encerrando o programa";
