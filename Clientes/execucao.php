@@ -61,6 +61,7 @@ do {
 
 
                     */
+                    echo $c;
             }
 
 
@@ -85,12 +86,20 @@ do {
             //EXCLUSAO PELO ID DO CLIENTE
 
             //1-Listar os clientes
+            $clienteDAO = new ClienteDAO();
+            $clientes = $clienteDAO->listarClientes();
+            foreach($clientes as $c){
+                echo $c;
+            }
 
             //2-Solicitar o ID
-
+            $id = readline("Informe o ID do cliente: ");
             //3-Chamar o cliente DAO para remover a base de dados
+            
+            $cliente = $clienteDAO->removerClientes($id);
 
             //4-Informar q o cliente foi excluído
+                echo "\nCliente foi excluido com sucesso";
             break;
         case 0:
             echo"Encerrando o programa";

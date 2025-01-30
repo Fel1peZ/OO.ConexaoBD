@@ -73,6 +73,25 @@ require_once("util/Conexao.php");
 
         }
 
+        public function removerClientes(int $idCliente){
+            $sql = " DELETE  FROM clientes  WHERE id = ?";
+
+            $con = Conexao::getCon();
+
+            $stm = $con->prepare($sql);
+            $stm->execute([$idCliente]);
+
+            $registros = $stm->fetchAll();
+
+            $clientes = $this->mapCliente($registros);
+            if(count($clientes) > 0)
+                return $clientes[0];
+            else
+                return null;
+
+
+        }
+
         private function mapCliente(array $registros){
             $clientes = array();
             foreach($registros as $reg){
